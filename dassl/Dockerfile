@@ -14,6 +14,7 @@ RUN git clone https://github.com/KaiyangZhou/Dassl.pytorch.git
 WORKDIR /app/Dassl.pytorch
 
 # 安装 Python 依赖
+RUN pip install tensorflow
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 安装 Dassl.pytorch 库
