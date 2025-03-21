@@ -1,3 +1,4 @@
+#tag:latest
 # 使用 PyTorch 官方镜像，包含 Python 和 CUDA 12.4
 FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
 
