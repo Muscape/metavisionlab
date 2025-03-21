@@ -19,5 +19,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 安装 Dassl.pytorch 库
 RUN python setup.py develop
 
-# 运行默认命令
-CMD ["/bin/bash"]
+RUN /opt/conda/bin/conda init bash
