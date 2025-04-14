@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 # 安装 Conda 依赖
 RUN pip install pip==24.0 && \
     pip install \
-    cudatoolkit==11.3 \
+    cudatoolkit \
     numpy==1.19.2 \
     albumentations==0.4.3 \
     opencv-python==4.1.2.30 \
