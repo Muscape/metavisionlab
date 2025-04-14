@@ -101,6 +101,5 @@ RUN pip install pip==24.0 && python -m pip install --upgrade setuptools && \
     sparsestack==0.4.1 \
     sympy==1.13.3 \
     urllib3==2.2.3 \
-    wrapt==1.17.2 \
-    zipp==3.20.2
+    wrapt==1.17.2 
 RUN /opt/conda/bin/conda init bash
