@@ -24,5 +24,5 @@ RUN pip install pip=24.0 && python -m pip install -- upgrade setuptools && \
     torchmetrics==0.5 \
     timm==0.9.16 \
     blobfile==2.1.1 \
-    matplotlib==3.7.5 \
+    matplotlib==3.7.5
 RUN /opt/conda/bin/conda init bash
