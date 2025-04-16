@@ -9,8 +9,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# 安装 Python 3.8 和 python3-venv
-RUN apt-get update && apt-get install -y python3.8 python3-venv && \
+# 安装 Python 3.8 和 python3-pip
+RUN apt-get update && apt-get install -y python3.8 python3-pip && \
     apt-get clean
 
 # 创建名为 ldm 的 Python 虚拟环境
@@ -19,7 +19,7 @@ RUN python3.8 -m venv /opt/ldm
 # 激活虚拟环境并更新 PATH
 ENV PATH="/opt/ldm/bin:$PATH"
 
-# 在虚拟环境中安装 pip 和其他 Python 包
+# 在虚拟环境中升级 pip 并安装其他 Python 包
 RUN /opt/ldm/bin/pip install --upgrade pip \
     numpy \
     albumentations \
