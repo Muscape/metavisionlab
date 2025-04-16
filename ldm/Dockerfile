@@ -1,5 +1,3 @@
-#tag:latest
-
 # 基础镜像
 FROM pytorch/pytorch:1.12.1-cuda11.3-cudnn8-runtime
 
@@ -10,8 +8,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# 安装 Python 3.8 和 pip
-RUN apt-get update && apt-get install -y python3.8 python3-pip && \
+# 安装 Python 3.8、pip 和 python3-venv
+RUN apt-get update && apt-get install -y python3.8 python3-pip python3-venv && \
     python3.8 -m pip install --upgrade pip
 
 # 创建名为 ldm 的 Python 虚拟环境
