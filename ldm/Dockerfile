@@ -1,30 +1,26 @@
-name: ldm
-channels:
-  - pytorch
-  - defaults
-dependencies:
-  - python=3.8.5
-  - pip=20.3
-  - cudatoolkit=11.3
-  - pytorch=1.12.1
-  - torchvision=0.13.1
-  - numpy=1.19.2
-  - pip:
-    - albumentations==0.4.3
-    - opencv-python==4.1.2.30
-    - pudb==2019.2
-    - imageio==2.9.0
-    - imageio-ffmpeg==0.4.2
-    - pytorch-lightning==1.4.2 # 1.6.5
-    - omegaconf==2.1.1
-    - test-tube>=0.7.5
-    - streamlit>=0.73.1
-    - einops==0.3.0
-    - transformers==4.3.1
-    - torchmetrics==0.5
-    - timm==0.9.16
-    - blobfile==2.1.1
-    - matplotlib==3.7.5
-    - -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
-    - -e git+https://github.com/openai/CLIP.git@main#egg=clip
-    - -e .
+#tag:latest
+FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
+
+# 更新系统库，安装常用工具
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx libpci-dev curl nano psmisc zip git && \
+    apt-get --fix-broken install -y && \
+    apt-get clean
+
+# 安装 Python 包（注意显式指定 tokenizers）
+RUN pip install --upgrade pip==24.0 && \
+    pip install \
+    matplotlib==3.3.4 \
+    setuptools==52.0.0 \
+    albumentations==0.5.2 \
+    PyYAML==6.0 \
+    easydict==1.9 \
+    tensorboard==2.8.0 \
+    opencv-python-headless==4.5.3.56 \
+    albumentations==0.5.2 \
+    mmcv==1.6.2 \
+    timm==0.6.11 \
+    Cython==0.29.32 \
+    pillow==9.5.0
+# 如果你确实需要 conda init，可以放最后
+RUN /opt/conda/bin/conda init bash
