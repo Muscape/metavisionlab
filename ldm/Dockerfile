@@ -11,7 +11,7 @@ RUN pip install pip==24.0 && \
     pip install \
     numpy==1.24.4 \
     albumentations==0.4.3 \
-    opencv-python==4.1.2.30 \
+    opencv-python==4.5.5.64 \
     pudb==2019.2 \
     imageio==2.9.0 \
     imageio-ffmpeg==0.4.2 \
