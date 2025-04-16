@@ -9,12 +9,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# 安装 Python 3.8 和 python3-pip
-RUN apt-get update && apt-get install -y python3.8 python3.8-venv python3.8-pip && \
-    apt-get clean
-
-# 显式安装 ensurepip
-RUN apt-get update && apt-get install -y python3.8-ensurepip && \
+# 安装 Python 3.8 和 python3-venv
+RUN apt-get update && apt-get install -y python3.8 python3-venv && \
     apt-get clean
 
 # 创建名为 ldm 的 Python 虚拟环境
@@ -23,8 +19,11 @@ RUN python3.8 -m venv /opt/ldm
 # 激活虚拟环境并更新 PATH
 ENV PATH="/opt/ldm/bin:$PATH"
 
-# 在虚拟环境中升级 pip 并安装其他 Python 包
-RUN /opt/ldm/bin/pip install --upgrade pip \
+# 在虚拟环境中安装 pip
+RUN /opt/ldm/bin/python3 -m ensurepip --upgrade
+
+# 安装其他 Python 包
+RUN /opt/ldm/bin/pip install \
     numpy \
     albumentations \
     opencv-python \
