@@ -1,33 +1,30 @@
-FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
-
-# 更新系统库，安装常用工具
-RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx libpci-dev curl nano psmisc zip git && \
-    apt-get --fix-broken install -y && \
-    apt-get clean
-
-# ✅ 升级 pip + wheel，保证可以使用 .whl 文件（重要）
-RUN pip install --upgrade pip==24.0 wheel setuptools
-
-# ✅ 先单独安装 tokenizers，确保下载的是预编译 wheel
-RUN pip install tokenizers==0.10.3
-
-# ✅ 再安装其他包
-RUN pip install \
-    numpy==1.24.4 \
-    albumentations==0.4.3 \
-    opencv-python==4.5.5.64 \
-    pudb==2019.2 \
-    imageio==2.9.0 \
-    imageio-ffmpeg==0.4.2 \
-    omegaconf==2.1.1 \
-    "test-tube>=0.7.5" \
-    "streamlit>=0.73.1" \
-    einops==0.3.0 \
-    transformers==4.6.1 \
-    torchmetrics==0.5 \
-    timm==0.9.16 \
-    blobfile==2.1.1 \
-    matplotlib==3.7.5
-
-RUN /opt/conda/bin/conda init bash
+name: ldm
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.8.5
+  - pip=20.3
+  - cudatoolkit=11.3
+  - pytorch=1.12.1
+  - torchvision=0.13.1
+  - numpy=1.19.2
+  - pip:
+    - albumentations==0.4.3
+    - opencv-python==4.1.2.30
+    - pudb==2019.2
+    - imageio==2.9.0
+    - imageio-ffmpeg==0.4.2
+    - pytorch-lightning==1.4.2 # 1.6.5
+    - omegaconf==2.1.1
+    - test-tube>=0.7.5
+    - streamlit>=0.73.1
+    - einops==0.3.0
+    - transformers==4.3.1
+    - torchmetrics==0.5
+    - timm==0.9.16
+    - blobfile==2.1.1
+    - matplotlib==3.7.5
+    - -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
+    - -e git+https://github.com/openai/CLIP.git@main#egg=clip
+    - -e .
