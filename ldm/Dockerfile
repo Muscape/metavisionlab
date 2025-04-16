@@ -1,13 +1,12 @@
 #tag:latest
 FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
 
-# 安装系统依赖
+# 更新系统库，安装常用工具
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx libpci-dev curl nano psmisc zip git \
-    build-essential rustc cargo && \
-    apt-get clean
+    libgl1-mesa-glx libpci-dev curl nano psmisc zip git && \
+    apt-get --fix-broken install -y
 
-# 升级 pip 并安装 Python 包
+# 安装 Conda 依赖
 RUN pip install --upgrade pip && \
     pip install \
     numpy==1.24.4 \
@@ -21,6 +20,7 @@ RUN pip install --upgrade pip && \
     "streamlit>=0.73.1" \
     einops==0.3.0 \
     transformers==4.3.1 \
+    tokenizers==0.10.3 \
     torchmetrics==0.5 \
     timm==0.9.16 \
     blobfile==2.1.1 \
