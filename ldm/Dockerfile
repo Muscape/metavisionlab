@@ -8,12 +8,12 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# 安装 Python 3.8、pip 和 python3-venv
-RUN apt-get update && apt-get install -y python3.8 python3-pip python3-venv && \
-    python3.8 -m pip install --upgrade pip
+# 安装 Python 3.8 和 pip
+# 注意：这里我们假设基础镜像已经包含了 Python 3.8 和 pip
+# 如果不是这样，你需要安装它们
 
 # 创建名为 ldm 的 Python 虚拟环境
-RUN python3.8 -m venv /opt/ldm
+RUN python3 -m venv /opt/ldm
 
 # 激活虚拟环境并更新 PATH
 ENV PATH="/opt/ldm/bin:$PATH"
@@ -38,6 +38,7 @@ RUN /opt/ldm/bin/pip install --upgrade \
     matplotlib
 
 # 安装 Conda 初始化脚本
+# 注意：如果你的基础镜像不包含 Conda，这步将会失败
 RUN /opt/conda/bin/conda init bash
 
 # 将虚拟环境设置为默认 Python 环境
