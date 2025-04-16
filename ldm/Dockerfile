@@ -12,15 +12,15 @@ RUN apt-get update && apt-get install -y \
 
 # 安装 Python 3.8 和 pip
 RUN apt-get update && apt-get install -y python3.8 python3-pip && \
-    pip3 install --upgrade pip
+    python3.8 -m pip install --upgrade pip
 
 # 设置 Python 3.8 为默认 Python 版本
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1 && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1 && \
     ln -fs /usr/bin/python3.8 /usr/bin/python
 
-# 安装 PyTorch, Torchvision 和其他必要的 Python 包
-RUN pip3.8 install \
+# 安装其他 Python 包
+RUN python3.8 -m pip install \
     numpy==1.19.2 \
     albumentations==0.4.3 \
     opencv-python==4.1.2.30 \
@@ -37,14 +37,6 @@ RUN pip3.8 install \
     timm==0.9.16 \
     blobfile==2.1.1 \
     matplotlib==3.7.5
-
-# 从 Git 安装额外的包
-RUN pip3.8 install -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
-RUN pip3.8 install -e git+https://github.com/openai/CLIP.git@main#egg=clip
-RUN pip3.8 install -e .
-
-# 清理 pip 缓存
-RUN rm -rf /root/.cache/pip
 
 # 安装 Conda 初始化脚本
 RUN /opt/conda/bin/conda init bash
