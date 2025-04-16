@@ -16,10 +16,11 @@ RUN pip install pip==24.0 && \
     imageio==2.9.0 \
     imageio-ffmpeg==0.4.2 \
     omegaconf==2.1.1 \
-    test-tube>=0.7.5 \
-    streamlit>=0.73.1 \
+    "test-tube>=0.7.5" \
+    "streamlit>=0.73.1" \
     einops==0.3.0 \
     transformers==4.6.1 \
+    tokenizers==0.10.3 \
     torchmetrics==0.5 \
     timm==0.9.16 \
     blobfile==2.1.1 \
