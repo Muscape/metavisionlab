@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     apt-get --fix-broken install -y
 
 # 安装 Conda 依赖
-RUN pip install pip==24.0 && \
+RUN pip install --upgrade pip==24.0 && \
     pip install \
     numpy==1.24.4 \
     albumentations==0.4.3 \
