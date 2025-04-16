@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     apt-get --fix-broken install -y
 
 # 安装 Conda 依赖
-RUN pip install --upgrade pip && \
+RUN pip install pip==24.0 && \
     pip install \
     numpy==1.24.4 \
     albumentations==0.4.3 \
@@ -16,11 +16,10 @@ RUN pip install --upgrade pip && \
     imageio==2.9.0 \
     imageio-ffmpeg==0.4.2 \
     omegaconf==2.1.1 \
-    "test-tube>=0.7.5" \
-    "streamlit>=0.73.1" \
+    test-tube>=0.7.5 \
+    streamlit>=0.73.1 \
     einops==0.3.0 \
-    transformers==4.3.1 \
-    tokenizers==0.10.3 \
+    transformers==4.6.1 \
     torchmetrics==0.5 \
     timm==0.9.16 \
     blobfile==2.1.1 \
