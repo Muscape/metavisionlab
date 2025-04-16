@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install pip==24.0 && \
     pip install \
     numpy==1.26.4 \  # 最新兼容 Py3.11
-    albumentations==1.4.3 \  # 替代你原来的 0.4.3，功能更强 & 兼容性好
+    albumentations==0.4.3 \  # 替代你原来的 0.4.3，功能更强 & 兼容性好
     opencv-python==4.5.5.64 \  # 稳定可用版本
     pudb==2022.1 \  # 最新稳定版
     imageio==2.33.1 \  # 与 matplotlib 和 numpy 兼容
