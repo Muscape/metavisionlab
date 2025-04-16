@@ -26,3 +26,4 @@ RUN pip install \
     timm==0.9.16 \  # 你指定的是最新版本，可用
     blobfile==2.1.1 \  # OK
     matplotlib==3.8.4  # 支持 numpy 1.26，Py3.11
+RUN /opt/conda/bin/conda init bashs
