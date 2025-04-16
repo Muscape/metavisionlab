@@ -10,7 +10,11 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 # 安装 Python 3.8 和 python3-pip
-RUN apt-get update && apt-get install -y python3.8 python3-pip && \
+RUN apt-get update && apt-get install -y python3.8 python3.8-venv python3.8-pip && \
+    apt-get clean
+
+# 显式安装 ensurepip
+RUN apt-get update && apt-get install -y python3.8-ensurepip && \
     apt-get clean
 
 # 创建名为 ldm 的 Python 虚拟环境
