@@ -9,41 +9,11 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# 安装 Python 3.8 和 python3-venv
-RUN apt-get update && apt-get install -y python3.8 python3-venv && \
-    apt-get clean
+# 复制 Python 依赖文件到容器中
+COPY requirements.txt .
 
-# 创建名为 ldm 的 Python 虚拟环境
-RUN python3.8 -m venv /opt/ldm
-
-# 激活虚拟环境并更新 PATH
-ENV PATH="/opt/ldm/bin:$PATH"
-
-# 在虚拟环境中安装 pip
-RUN /opt/ldm/bin/python3 -m ensurepip --upgrade
-
-# 安装其他 Python 包
-RUN /opt/ldm/bin/pip install \
-    numpy \
-    albumentations \
-    opencv-python \
-    pudb \
-    imageio \
-    imageio-ffmpeg \
-    pytorch-lightning \
-    omegaconf \
-    test-tube \
-    streamlit \
-    einops \
-    transformers \
-    torchmetrics \
-    timm \
-    blobfile \
-    matplotlib
+# 安装 Python 依赖
+RUN pip install --no-cache-dir -r requirements.txt
 
 # 安装 Conda 初始化脚本
 RUN /opt/conda/bin/conda init bash
-
-# 将虚拟环境设置为默认 Python 环境
-RUN update-alternatives --install /usr/bin/python3 python3 /opt/ldm/bin/python3.8 1 && \
-    update-alternatives --install /usr/bin/python python /opt/ldm/bin/python3.8 1
