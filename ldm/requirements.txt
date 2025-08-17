@@ -12,3 +12,4 @@ Cython==0.29.32
 pillow==9.5.0
 thop
 prettytable
+sklearn
