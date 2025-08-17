@@ -10,3 +10,5 @@ mmcv==1.6.2
 timm==0.6.11
 Cython==0.29.32
 pillow==9.5.0
+thop==0.1.1
+prettytable==3.16.0
