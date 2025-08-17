@@ -11,4 +11,4 @@ timm==0.6.11
 Cython==0.29.32
 pillow==9.5.0
 thop
-prettytable==3.16.0
+prettytable
