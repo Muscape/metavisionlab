@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# 复制 Python 依赖文件到容器
+# 复制 Python 依赖文件到容器中
 COPY requirements.txt .
 
 # 安装 Python 依赖
